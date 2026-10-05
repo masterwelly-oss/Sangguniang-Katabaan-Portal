@@ -60,7 +60,6 @@
         .card-shadow {
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
         }
-        /* Custom scrollbar for clean audit tables */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -75,7 +74,6 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #94A3B8;
         }
-        /* Printable Styles for Audit & DILG/COA Compliance */
         @media print {
             .no-print {
                 display: none !important;
@@ -103,7 +101,7 @@
     <div class="bg-phnavy text-white text-xs py-1.5 px-4 sm:px-8 border-b border-phgold/30 flex justify-between items-center no-print">
         <div class="flex items-center space-x-3">
             <span class="font-semibold tracking-wide flex items-center gap-1.5">
-                <i class="fa-solid fa-building-columns text-phgold"> logic</i> Official Portal of Barangay Local Youth Development Council
+                <i class="fa-solid fa-building-columns text-phgold"></i> Official Portal of Barangay Local Youth Development Council
             </span>
             <span class="hidden md:inline text-slate-400">|</span>
             <span class="hidden md:inline text-slate-300">Republic of the Philippines</span>
@@ -119,7 +117,6 @@
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
             <!-- Branding Left -->
             <div class="flex items-center space-x-4 text-center md:text-left">
-                <!-- SK & Philippine Seal SVG Emblems -->
                 <div class="relative flex-shrink-0">
                     <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/10 backdrop-blur border-2 border-phgold flex items-center justify-center p-1 shadow-lg">
                         <svg class="w-full h-full text-phgold" viewBox="0 0 100 100" fill="currentColor">
@@ -187,7 +184,7 @@
     <!-- MAIN CONTENT CONTAINER -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-8 py-6">
 
-        <!-- Printable Official Letterhead Header (Only Visible on Print/PDF export) -->
+        <!-- Printable Official Letterhead Header -->
         <div class="print-only mb-6 border-b-2 border-phnavy pb-4 text-center">
             <h2 class="text-sm font-bold uppercase">Republika ng Pilipinas</h2>
             <h1 class="text-lg font-black uppercase text-phnavy">Sangguniang Kabataan Governance Office</h1>
@@ -195,11 +192,8 @@
             <p id="printDateStamp" class="text-[10px] text-slate-500 mt-2"></p>
         </div>
 
-        <!-- ========================================== -->
         <!-- TAB 1: EXECUTIVE SUMMARY (DASHBOARD) -->
-        <!-- ========================================== -->
         <section id="section-dashboard" class="space-y-6">
-            <!-- Quick Actions Banner -->
             <div class="bg-govcard border border-govborder rounded-xl p-4 card-shadow flex flex-col md:flex-row items-center justify-between gap-4">
                 <div class="flex items-center gap-3">
                     <div class="p-3 bg-phnavy/5 text-phnavy rounded-lg">
@@ -228,7 +222,6 @@
 
             <!-- Statistics Overview Cards -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- KK Total Card -->
                 <div class="bg-govcard border border-govborder rounded-xl p-5 card-shadow flex items-center justify-between">
                     <div>
                         <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Total KK Registry</span>
@@ -240,7 +233,6 @@
                     </div>
                 </div>
 
-                <!-- Active Projects Card -->
                 <div class="bg-govcard border border-govborder rounded-xl p-5 card-shadow flex items-center justify-between">
                     <div>
                         <span class="text-xs font-bold uppercase tracking-wider text-slate-500">ABYIP Projects</span>
@@ -252,7 +244,6 @@
                     </div>
                 </div>
 
-                <!-- Total Fund Card -->
                 <div class="bg-govcard border border-govborder rounded-xl p-5 card-shadow flex items-center justify-between">
                     <div>
                         <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Fund Allocation</span>
@@ -264,7 +255,6 @@
                     </div>
                 </div>
 
-                <!-- Total Disbursed Card -->
                 <div class="bg-govcard border border-govborder rounded-xl p-5 card-shadow flex items-center justify-between">
                     <div>
                         <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Total Disbursed</span>
@@ -279,7 +269,6 @@
 
             <!-- Charts Row -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Demographic Chart -->
                 <div class="bg-govcard border border-govborder rounded-xl p-5 card-shadow">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="font-bold text-phnavy text-sm uppercase tracking-wide flex items-center gap-2">
@@ -292,7 +281,6 @@
                     </div>
                 </div>
 
-                <!-- Age Bracket Chart -->
                 <div class="bg-govcard border border-govborder rounded-xl p-5 card-shadow">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="font-bold text-phnavy text-sm uppercase tracking-wide flex items-center gap-2">
@@ -305,7 +293,6 @@
                     </div>
                 </div>
 
-                <!-- Project Status Pipeline Chart -->
                 <div class="bg-govcard border border-govborder rounded-xl p-5 card-shadow">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="font-bold text-phnavy text-sm uppercase tracking-wide flex items-center gap-2">
@@ -321,35 +308,26 @@
 
             <!-- Recent Activity Summaries -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Recent Projects List -->
                 <div class="bg-govcard border border-govborder rounded-xl p-5 card-shadow">
                     <div class="flex justify-between items-center mb-3">
                         <h3 class="font-bold text-phnavy text-sm uppercase tracking-wide">Key ABYIP Projects</h3>
                         <button onclick="switchTab('projects')" class="text-xs text-phblue hover:underline font-semibold">View All &rarr;</button>
                     </div>
-                    <div id="dashProjectsList" class="divide-y divide-slate-100 text-xs">
-                        <!-- Dynamic content -->
-                    </div>
+                    <div id="dashProjectsList" class="divide-y divide-slate-100 text-xs"></div>
                 </div>
 
-                <!-- Recent Financial Disbursals -->
                 <div class="bg-govcard border border-govborder rounded-xl p-5 card-shadow">
                     <div class="flex justify-between items-center mb-3">
                         <h3 class="font-bold text-phnavy text-sm uppercase tracking-wide">Recent Financial Transactions</h3>
                         <button onclick="switchTab('financial')" class="text-xs text-phblue hover:underline font-semibold">View Ledger &rarr;</button>
                     </div>
-                    <div id="dashFinancialList" class="divide-y divide-slate-100 text-xs">
-                        <!-- Dynamic content -->
-                    </div>
+                    <div id="dashFinancialList" class="divide-y divide-slate-100 text-xs"></div>
                 </div>
             </div>
         </section>
 
-        <!-- ========================================== -->
         <!-- TAB 2: KATIPUNAN NG KABATAAN (KK) REGISTRY -->
-        <!-- ========================================== -->
         <section id="section-registry" class="space-y-6 hidden">
-            <!-- Section Header & Actions -->
             <div class="bg-govcard border border-govborder rounded-xl p-5 card-shadow flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
                     <h2 class="text-lg font-bold text-phnavy flex items-center gap-2">
@@ -426,9 +404,7 @@
                                 <th class="py-3 px-3 text-center no-print">Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="kkTableBody" class="divide-y divide-slate-200 font-medium">
-                            <!-- Dynamic Content -->
-                        </tbody>
+                        <tbody id="kkTableBody" class="divide-y divide-slate-200 font-medium"></tbody>
                     </table>
                 </div>
                 <div class="p-3 bg-slate-50 border-t border-govborder text-xs text-slate-500 flex justify-between items-center">
@@ -438,11 +414,8 @@
             </div>
         </section>
 
-        <!-- ========================================== -->
         <!-- TAB 3: ABYIP & PROJECT MANAGEMENT -->
-        <!-- ========================================== -->
         <section id="section-projects" class="space-y-6 hidden">
-            <!-- Section Header & Actions -->
             <div class="bg-govcard border border-govborder rounded-xl p-5 card-shadow flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
                     <h2 class="text-lg font-bold text-phnavy flex items-center gap-2">
@@ -504,19 +477,14 @@
                                 <th class="py-3 px-3 text-center no-print">Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="projectsTableBody" class="divide-y divide-slate-200 font-medium">
-                            <!-- Dynamic Content -->
-                        </tbody>
+                        <tbody id="projectsTableBody" class="divide-y divide-slate-200 font-medium"></tbody>
                     </table>
                 </div>
             </div>
         </section>
 
-        <!-- ========================================== -->
         <!-- TAB 4: FINANCIAL & COA DISBURSEMENT LEDGER -->
-        <!-- ========================================== -->
         <section id="section-financial" class="space-y-6 hidden">
-            <!-- Section Header & Actions -->
             <div class="bg-govcard border border-govborder rounded-xl p-5 card-shadow flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
                     <h2 class="text-lg font-bold text-phnavy flex items-center gap-2">
@@ -577,9 +545,7 @@
                                 <th class="py-3 px-3 text-center no-print">Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="financialTableBody" class="divide-y divide-slate-200 font-medium">
-                            <!-- Dynamic Content -->
-                        </tbody>
+                        <tbody id="financialTableBody" class="divide-y divide-slate-200 font-medium"></tbody>
                     </table>
                 </div>
             </div>
@@ -603,9 +569,7 @@
         </div>
     </footer>
 
-    <!-- ========================================== -->
     <!-- MODAL 1: REGISTER KK MEMBER -->
-    <!-- ========================================== -->
     <div id="modalMember" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4 no-print">
         <div class="bg-white rounded-xl border border-govborder max-w-lg w-full card-shadow overflow-hidden transform transition-all">
             <div class="bg-phnavy text-white px-5 py-4 flex justify-between items-center gold-border-bottom">
@@ -678,9 +642,7 @@
         </div>
     </div>
 
-    <!-- ========================================== -->
     <!-- MODAL 2: DRAFT ABYIP PROJECT -->
-    <!-- ========================================== -->
     <div id="modalProject" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4 no-print">
         <div class="bg-white rounded-xl border border-govborder max-w-lg w-full card-shadow overflow-hidden transform transition-all">
             <div class="bg-phnavy text-white px-5 py-4 flex justify-between items-center gold-border-bottom">
@@ -748,9 +710,7 @@
         </div>
     </div>
 
-    <!-- ========================================== -->
     <!-- MODAL 3: LOG FINANCIAL DISBURSEMENT / INCOME -->
-    <!-- ========================================== -->
     <div id="modalFinancial" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4 no-print">
         <div class="bg-white rounded-xl border border-govborder max-w-lg w-full card-shadow overflow-hidden transform transition-all">
             <div class="bg-phnavy text-white px-5 py-4 flex justify-between items-center gold-border-bottom">
@@ -811,11 +771,6 @@
     </div>
 
     <script>
-        /* ==========================================================================
-           STATE MANAGEMENT & LOCAL STORAGE DATABASE
-           ========================================================================== */
-        
-        // Default Sample Pre-populated Data aligned with DILG/COA Rules
         const SAMPLE_KK_MEMBERS = [
             { id: 1, name: "Santos, Maria Clara P.", age: 19, sex: "Female", purok: "Purok 1", classification: "In-School Youth", voter: "National & SK Voter", contact: "09171234567" },
             { id: 2, name: "Dela Cruz, Juan M.", age: 16, sex: "Male", purok: "Purok 3", classification: "In-School Youth", voter: "SK Voter Only", contact: "09189876543" },
@@ -839,14 +794,12 @@
             { id: 4, type: "Expense/Disbursement", date: "2026-08-01", particulars: "Downpayment for Sports Festival Uniforms & Trophies", category: "Sports Development", voucher: "DV-2026-003", amount: 45000, audit: "Pending Receipts" }
         ];
 
-        // Initialize state from LocalStorage or Defaults
         let state = {
             kk: JSON.parse(localStorage.getItem('sk_kk_db')) || SAMPLE_KK_MEMBERS,
             projects: JSON.parse(localStorage.getItem('sk_projects_db')) || SAMPLE_PROJECTS,
             financial: JSON.parse(localStorage.getItem('sk_financial_db')) || SAMPLE_FINANCIAL
         };
 
-        // Save State helper
         function saveStateToStorage() {
             localStorage.setItem('sk_kk_db', JSON.stringify(state.kk));
             localStorage.setItem('sk_projects_db', JSON.stringify(state.projects));
@@ -854,9 +807,6 @@
             refreshAllViews();
         }
 
-        /* ==========================================================================
-           TAB NAVIGATION LOGIC
-           ========================================================================== */
         function switchTab(tabName) {
             const tabs = ['dashboard', 'registry', 'projects', 'financial'];
             tabs.forEach(t => {
@@ -873,9 +823,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        /* ==========================================================================
-           MODAL CONTROLLERS
-           ========================================================================== */
         function openModal(modalId) {
             document.getElementById(modalId).classList.remove('hidden');
         }
@@ -884,9 +831,6 @@
             document.getElementById(modalId).classList.add('hidden');
         }
 
-        /* ==========================================================================
-           CALCULATIONS & FORMATTERS
-           ========================================================================== */
         function formatPHP(amount) {
             return new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' }).format(amount);
         }
@@ -898,9 +842,6 @@
             return "Other";
         }
 
-        /* ==========================================================================
-           DATA RENDERING ENGINE
-           ========================================================================== */
         function refreshAllViews() {
             renderHeaderMetrics();
             renderDashboard();
@@ -910,7 +851,6 @@
             updateCharts();
         }
 
-        // Header Metrics
         function renderHeaderMetrics() {
             const totalMembers = state.kk.length;
             const totalProjects = state.projects.length;
@@ -924,7 +864,6 @@
             document.getElementById('hdrStatAllocated').textContent = formatPHP(totalIncome);
             document.getElementById('hdrStatRemaining').textContent = formatPHP(remaining);
 
-            // Dashboard Cards
             document.getElementById('dashCardMembers').textContent = totalMembers;
             document.getElementById('dashCardProjects').textContent = totalProjects;
             document.getElementById('dashCardFund').textContent = formatPHP(totalIncome);
@@ -933,13 +872,11 @@
             const utilRate = totalIncome > 0 ? ((totalExpense / totalIncome) * 100).toFixed(1) : 0;
             document.getElementById('dashDisbursementRate').textContent = `${utilRate}% Fund Utilization Rate`;
 
-            // Financial Summary
             document.getElementById('ledgerTotalIncome').textContent = formatPHP(totalIncome);
             document.getElementById('ledgerTotalExpense').textContent = formatPHP(totalExpense);
             document.getElementById('ledgerNetBalance').textContent = formatPHP(remaining);
         }
 
-        // Render KK Table
         function renderKKTable() {
             const tbody = document.getElementById('kkTableBody');
             const search = document.getElementById('filterKKSearch').value.toLowerCase();
@@ -982,12 +919,10 @@
             document.getElementById('kkRecordCount').textContent = `Showing ${filtered.length} of ${state.kk.length} members`;
         }
 
-        // Render Projects Table
         function renderProjectsTable() {
             const tbody = document.getElementById('projectsTableBody');
             tbody.innerHTML = '';
 
-            // Pipeline counter map
             const pCounts = { "Planning": 0, "Proposal Drafted": 0, "Resolution Passed": 0, "In Progress": 0, "Completed": 0, "Liquidated": 0 };
 
             state.projects.forEach(p => {
@@ -1017,7 +952,6 @@
                 tbody.appendChild(tr);
             });
 
-            // Update Pipeline count numbers
             document.getElementById('pipeCountPlanning').textContent = pCounts["Planning"];
             document.getElementById('pipeCountProposal').textContent = pCounts["Proposal Drafted"];
             document.getElementById('pipeCountResolution').textContent = pCounts["Resolution Passed"];
@@ -1026,7 +960,6 @@
             document.getElementById('pipeCountLiquidated').textContent = pCounts["Liquidated"];
         }
 
-        // Render Financial Ledger
         function renderFinancialTable() {
             const tbody = document.getElementById('financialTableBody');
             tbody.innerHTML = '';
@@ -1055,7 +988,6 @@
             });
         }
 
-        // Dashboard Lists
         function renderDashboard() {
             const projList = document.getElementById('dashProjectsList');
             projList.innerHTML = '';
@@ -1092,15 +1024,11 @@
             });
         }
 
-        /* ==========================================================================
-           CHART.JS ANALYTICS ENGINE
-           ========================================================================== */
         let chartClassInst = null;
         let chartAgeInst = null;
         let chartStatusInst = null;
 
         function updateCharts() {
-            // 1. Classification Breakdown
             const classCounts = { "In-School Youth": 0, "Out-of-School Youth": 0, "Working Youth": 0, "Youth with Specific Needs": 0 };
             state.kk.forEach(m => {
                 if (classCounts[m.classification] !== undefined) classCounts[m.classification]++;
@@ -1126,7 +1054,6 @@
                 }
             });
 
-            // 2. Age Groups
             const ageGroupCounts = { "Child Youth (15-17)": 0, "Core Youth (18-24)": 0, "Young Adult (25-30)": 0 };
             state.kk.forEach(m => {
                 const grp = getAgeGroup(m.age);
@@ -1154,7 +1081,6 @@
                 }
             });
 
-            // 3. Project Statuses
             const statusCounts = { "Planning": 0, "Proposal": 0, "Resolution": 0, "In Progress": 0, "Completed": 0, "Liquidated": 0 };
             state.projects.forEach(p => {
                 if (p.status.includes('Planning')) statusCounts["Planning"]++;
@@ -1191,9 +1117,6 @@
             });
         }
 
-        /* ==========================================================================
-           FORM SUBMISSION HANDLERS
-           ========================================================================== */
         function saveKKMember(e) {
             e.preventDefault();
             const newMember = {
@@ -1269,9 +1192,6 @@
             }
         }
 
-        /* ==========================================================================
-           EXPORTER TO CSV
-           ========================================================================== */
         function exportToCSV(type) {
             let csvContent = "data:text/csv;charset=utf-8,";
             let fileName = "sk_report.csv";
@@ -1305,9 +1225,6 @@
             document.body.removeChild(link);
         }
 
-        /* ==========================================================================
-           INITIALIZATION & LIVE CLOCK
-           ========================================================================== */
         function startLiveClock() {
             const clockEl = document.getElementById('liveClock');
             const dateStamp = document.getElementById('printDateStamp');
@@ -1320,11 +1237,9 @@
             }, 1000);
         }
 
-        // Set Default Date Pickers to Today
         document.getElementById('pDate').valueAsDate = new Date();
         document.getElementById('fDate').valueAsDate = new Date();
 
-        // Window Load Handler
         window.onload = function() {
             startLiveClock();
             refreshAllViews();
