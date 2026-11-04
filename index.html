@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sangguniang Kabataan Official Governance Portal</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js for Government Analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        phnavy: '#002B49',
+                        phblue: '#0038A8',
+                        phred: '#CE1126',
+                        phgold: '#D4AF37',
+                        phgoldhover: '#B89528',
+                        govbg: '#F4F6F9',
+                        govcard: '#FFFFFF',
+                        govborder: '#E2E8F0'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #F4F6F9;
+            color: #1E293B;
+        }
+        .ph-header-gradient {
+            background: linear-gradient(135deg, #001F35 0%, #002B49 60%, #0038A8 100%);
+        }
+        .gold-border-bottom {
+            border-bottom: 3px solid #D4AF37;
+        }
+        .gold-badge {
+            background-color: rgba(212, 175, 55, 0.15);
+            color: #8C6D00;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+        }
+        .nav-tab-active {
+            color: #002B49;
+            border-bottom: 3px solid #002B49;
+            font-weight: 700;
+            background-color: #FFFFFF;
+        }
+        .card-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94A3B8;
+        }
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            body {
+                background: white;
+                color: black;
+            }
+            .print-only {
+                display: block !important;
+            }
+            .card-shadow {
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+        }
+        .print-only {
+            display: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans antialiased">
+
+    <!-- Official Top Bar -->
+    <div class="bg-phnavy text-white text-xs py-1.5 px-4 sm:px-8 border-b border-phgold/30 flex justify-between items-center no-print">
+        <div class="flex items-center space-x-3">
+            <span class="font-semibold tracking-wide flex items-center gap-1.5">
+                <i class="fa-solid fa-building-columns text-phgold"></i> Official Portal of Barangay Local Youth Development Council
+            </span>
+            <span class="hidden md:inline text-slate-400">|</span>
+            <span class="hidden md:inline text-slate-300">Republic of the Philippines</span>
+        </div>
+        <div class="flex items-center space-x-4">
+            <span id="liveClock" class="text-slate-300 font-mono text-[11px]"></span>
+            <span class="bg-phgold/20 text-phgold text-[10px] font-bold px-2 py-0.5 rounded border border-phgold/40">DILG & COA COMPLIANT</span>
+        </div>
+    </div>
+
+    <!-- Main Banner Header -->
+    <header class="ph-header-gradient text-white py-6 px-4 sm:px-8 gold-border-bottom shadow-md no-print">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <!-- Branding Left with Authentic Sangguniang Kabataan Emblem -->
+            <div class="flex items-center space-x-4 text-center md:text-left">
+                <div class="relative flex-shrink-0">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white backdrop-blur border-2 border-phgold flex items-center justify-center p-1.5 shadow-lg overflow-hidden">
+                        <!-- Official Sangguniang Kabataan (SK) Emblem SVG -->
+                        <svg class="w-full h-full" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Outer Ring (Blue Border) -->
+                            <circle cx="250" cy="250" r="235" fill="none" stroke="#0038A8" stroke-width="25"/>
+                            <!-- Inner Gold Ring Border -->
+                            <circle cx="250" cy="250" r="215" fill="none" stroke="#D4AF37" stroke-width="8"/>
+                            <!-- Background Fill -->
+                            <circle cx="250" cy="250" r="211" fill="#FFFFFF"/>
+                            
+                            <!-- SK Stylized Typography / Graphic Representation -->
+                            <g fill="#0038A8">
+                                <!-- S Letter Stylized -->
+                                <path d="M165,160 C130,160 115,185 115,210 C115,245 150,255 185,265 C220,275 240,295 240,330 C240,365 210,390 160,390 C120,390 100,370 95,345 L135,330 C140,345 150,355 165,355 C185,355 195,345 195,330 C195,310 180,300 150,290 C115,278 75,260 75,210 C75,155 125,125 170,125 C210,125 235,140 245,155 L215,185 C200,170 185,160 165,160 Z" />
+                                <!-- K Letter Stylized -->
+                                <path d="M290,135 L335,135 L335,225 L385,135 L435,135 L375,230 L440,380 L390,380 L340,265 L335,275 L335,380 L290,380 Z" />
+                            </g>
+                            <!-- Tricolor Accent Triangles / Star Motif underneath -->
+                            <polygon points="250,400 270,440 230,440" fill="#CE1126"/>
+                        </svg>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-center justify-center md:justify-start gap-2">
+                        <span class="text-xs uppercase tracking-widest text-phgold font-bold">Republika ng Pilipinas</span>
+                        <span class="text-xs text-slate-300">•</span>
+                        <span class="text-xs text-slate-300">Barangay Governance</span>
+                    </div>
+                    <h1 class="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight text-white mt-0.5">
+                        SANGGUNIANG KABATAAN <span class="text-phgold font-light">PORTAL</span>
+                    </h1>
+                    <p class="text-xs sm:text-sm text-slate-300 mt-0.5">
+                        Youth Registry, ABYIP Project Tracker & COA Financial Management System
+                    </p>
+                </div>
+            </div>
+
+            <!-- Header Quick Stats Badge Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 w-full md:w-auto">
+                <div class="bg-white/10 backdrop-blur border border-white/10 rounded-lg p-2.5 text-center min-w-[100px]">
+                    <span class="text-[10px] text-slate-300 uppercase block font-medium">KK Members</span>
+                    <span id="hdrStatMembers" class="text-lg font-bold text-white">0</span>
+                </div>
+                <div class="bg-white/10 backdrop-blur border border-white/10 rounded-lg p-2.5 text-center min-w-[100px]">
+                    <span class="text-[10px] text-slate-300 uppercase block font-medium">Projects</span>
+                    <span id="hdrStatProjects" class="text-lg font-bold text-phgold">0</span>
+                </div>
+                <div class="bg-white/10 backdrop-blur border border-white/10 rounded-lg p-2.5 text-center min-w-[100px]">
+                    <span class="text-[10px] text-slate-300 uppercase block font-medium">Allocated Fund</span>
+                    <span id="hdrStatAllocated" class="text-lg font-bold text-emerald-400">₱0</span>
+                </div>
+                <div class="bg-white/10 backdrop-blur border border-white/10 rounded-lg p-2.5 text-center min-w-[100px]">
+                    <span class="text-[10px] text-slate-300 uppercase block font-medium">Remaining</span>
+                    <span id="hdrStatRemaining" class="text-lg font-bold text-sky-300">₱0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs Bar -->
+    <nav class="bg-slate-100 border-b border-govborder sticky top-0 z-30 shadow-sm no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 flex space-x-1 sm:space-x-2 overflow-x-auto text-xs sm:text-sm font-medium">
+            <button onclick="switchTab('dashboard')" id="tab-dashboard" class="nav-tab nav-tab-active px-4 py-3.5 flex items-center gap-2 whitespace-nowrap transition-colors border-b-2">
+                <i class="fa-solid fa-chart-pie text-phblue"></i> Executive Summary
+            </button>
+            <button onclick="switchTab('registry')" id="tab-registry" class="nav-tab text-slate-600 hover:text-phnavy px-4 py-3.5 flex items-center gap-2 whitespace-nowrap transition-colors border-b-2 border-transparent">
+                <i class="fa-solid fa-id-card text-slate-500"></i> KK Youth Registry
+            </button>
+            <button onclick="switchTab('projects')" id="tab-projects" class="nav-tab text-slate-600 hover:text-phnavy px-4 py-3.5 flex items-center gap-2 whitespace-nowrap transition-colors border-b-2 border-transparent">
+                <i class="fa-solid fa-diagram-project text-slate-500"></i> ABYIP & Projects
+            </button>
+            <button onclick="switchTab('financial')" id="tab-financial" class="nav-tab text-slate-600 hover:text-phnavy px-4 py-3.5 flex items-center gap-2 whitespace-nowrap transition-colors border-b-2 border-transparent">
+                <i class="fa-solid fa-file-invoice-dollar text-slate-500"></i> Financial Ledger & COA
+            </button>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-8 py-6">
+
+        <!-- Printable Official Letterhead Header -->
+        <div class="print-only mb-6 border-b-2 border-phnavy pb-4 text-center">
+            <h2 class="text-sm font-bold uppercase">Republika ng Pilipinas</h2>
+            <h1 class="text-lg font-black uppercase text-phnavy">Sangguniang Kabataan Governance Office</h1>
+            <p class="text-xs text-slate-600">Barangay Youth Development Council • Official Compliance Audit Document</p>
+            <p id="printDateStamp" class="text-[10px] text-slate-500 mt-2"></p>
+        </div>
+
+        <!-- TAB 1: EXECUTIVE SUMMARY -->
+        <section id="section-dashboard" class="space-y-6">
+            <div class="bg-govcard border border-govborder rounded-xl p-4 card-shadow flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="p-3 bg-phnavy/5 text-phnavy rounded-lg">
+                        <i class="fa-solid fa-bolt text-xl text-phgold"></i>
+                    </div>
+                    <div>
+                        <h2 class="font-bold text-phnavy text-base">Quick Operational Actions</h2>
+                        <p class="text-xs text-slate-500">Direct shortcuts to add records or generate compliance reports</p>
+                    </div>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+                    <button onclick="openModal('modalMember')" class="flex-1 sm:flex-none bg-phnavy hover:bg-phblue text-white text-xs font-semibold px-3.5 py-2 rounded-lg transition shadow-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-user-plus"></i> Register KK Member
+                    </button>
+                    <button onclick="openModal('modalProject')" class="flex-1 sm:flex-none bg-phnavy hover:bg-phblue text-white text-xs font-semibold px-3.5 py-2 rounded-lg transition shadow-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-folder-plus"></i> New ABYIP Project
+                    </button>
+                    <button onclick="openModal('modalFinancial')" class="flex-1 sm:flex-none bg-phnavy hover:bg-phblue text-white text-xs font-semibold px-3.5 py-2 rounded-lg transition shadow-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-receipt"></i> Log Disbursement
+                    </button>
+                    <button onclick="window.print()" class="bg-slate-700 hover:bg-slate-800 text-white text-xs font-semibold px-3.5 py-2 rounded-lg transition shadow-sm flex items-center justify-center gap-2 no-print">
+                        <i class="fa-solid fa-print"></i> Print Official Audit
+                    </button>
+                </div>
+            </div>
+
+            <!-- Statistics Overview Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-govcard border border-govborder rounded-xl p-5 card-shadow flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Total KK Registry</span>
+                        <h3 id="dashCardMembers" class="text-2xl font-black text-phnavy mt-1">0</h3>
+                        <p class="text-[11px] text-emerald-600 font-medium mt-1"><i class="fa-solid fa-check-circle"></i> Profiled Under RA 10742</p>
+                    </div>
+                    <div class="w-12 h-12 rounded-full bg-blue-50 text-phblue flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                </div>
+
+                <div class="bg-govcard border border-govborder rounded-xl p-5 card-shadow flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-500">ABYIP Projects</span>
+                        <h3 id="dashCardProjects" class="text-2xl font-black text-phnavy mt-1">0</h3>
+                        <p class="text-[11px] text-phgold font-semibold mt-1"><i class="fa-solid fa-bars-progress"></i> Annual Plan Projects</p>
+                    </div>
+                    <div class="w-12 h-12 rounded-full bg-amber-50 text-phgold flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-list-check"></i>
+                    </div>
+                </div>
+
+                <div class="bg-govcard border border-govborder rounded-xl p-5 card-shadow flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Fund Allocation</span>
+                        <h3 id="dashCardFund" class="text-2xl font-black text-emerald-700 mt-1">₱0</h3>
+                        <p class="text-[11px] text-slate-500 mt-1">10% Barangay Youth Allocation</p>
+                    </div>
+                    <div class="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-vault"></i>
+                    </div>
+                </div>
+
+                <div class="bg-govcard border border-govborder rounded-xl p-5 card-shadow flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Total Disbursed</span>
+                        <h3 id="dashCardDisbursed" class="text-2xl font-black text-phred mt-1">₱0</h3>
+                        <p id="dashDisbursementRate" class="text-[11px] text-slate-500 mt-1">0% Utilization Rate</p>
+                    </div>
+                    <div class="w-12 h-12 rounded-full bg-red-50 text-phred flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="bg-govcard border border-govborder rounded-xl p-5 card-shadow">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-phnavy text-sm uppercase tracking-wide flex items-center gap-2">
+                            <i class="fa-solid fa-chart-pie text-phgold"></i> Youth Classification
+                        </h3>
+                        <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-medium">DILG Metric</span>
+                    </div>
+                    <div class="h-56 relative">
+                        <canvas id="chartClassification"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-govcard border border-govborder rounded-xl p-5 card-shadow">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-phnavy text-sm uppercase tracking-wide flex items-center gap-2">
+                            <i class="fa-solid fa-chart-column text-phblue"></i> Age Demographics
+                        </h3>
+                        <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-medium">RA 10742</span>
+                    </div>
+                    <div class="h-56 relative">
+                        <canvas id="chartAgeGroup"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-govcard border border-govborder rounded-xl p-5 card-shadow">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-phnavy text-sm uppercase tracking-wide flex items-center gap-2">
+                            <i class="fa-solid fa-tasks text-emerald-600"></i> Project Pipeline
+                        </h3>
+                        <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-medium">ABYIP Status</span>
+                    </div>
+                    <div class="h-56 relative">
+                        <canvas id="chartProjectStatus"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: KATIPUNAN NG KABATAAN (KK) REGISTRY -->
+        <section id="section-registry" class="space-y-6 hidden">
+            <div class="bg-govcard border border-govborder rounded-xl p-5 card-shadow flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-lg font-bold text-phnavy flex items-center gap-2">
+                        <i class="fa-solid fa-users text-phgold"></i> Katipunan ng Kabataan (KK) Master Database
+                    </h2>
+                    <p class="text-xs text-slate-500">Official Youth Demographic Record keeping mandated by the SK Reform Act (RA 10742)</p>
+                </div>
+                <div class="flex items-center gap-2 w-full md:w-auto">
+                    <button onclick="openModal('modalMember')" class="bg-phnavy hover:bg-phblue text-white text-xs font-semibold px-4 py-2 rounded-lg transition flex items-center gap-2 shadow-sm no-print">
+                        <i class="fa-solid fa-plus"></i> Add KK Member
+                    </button>
+                </div>
+            </div>
+            <div class="bg-govcard border border-govborder rounded-xl card-shadow overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="bg-phnavy text-white uppercase text-[10px] tracking-wider font-semibold">
+                                <th class="py-3 px-4">Full Name</th>
+                                <th class="py-3 px-3">Age / Group</th>
+                                <th class="py-3 px-3">Sex</th>
+                                <th class="py-3 px-3">Purok</th>
+                                <th class="py-3 px-3">Classification</th>
+                                <th class="py-3 px-3">Voter Status</th>
+                                <th class="py-3 px-3">Contact</th>
+                            </tr>
+                        </thead>
+                        <tbody id="kkTableBody" class="divide-y divide-slate-200 font-medium">
+                            <!-- Dynamic Content -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: ABYIP & PROJECT MANAGEMENT -->
+        <section id="section-projects" class="space-y-6 hidden">
+            <div class="bg-govcard border border-govborder rounded-xl p-5 card-shadow flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-lg font-bold text-phnavy flex items-center gap-2">
+                        <i class="fa-solid fa-diagram-project text-phgold"></i> ABYIP Project Tracker & Pipeline
+                    </h2>
+                    <p class="text-xs text-slate-500">Annual Barangay Youth Investment Plan (ABYIP) execution and committee management</p>
+                </div>
+                <div class="flex items-center gap-2 w-full md:w-auto">
+                    <button onclick="openModal('modalProject')" class="bg-phnavy hover:bg-phblue text-white text-xs font-semibold px-4 py-2 rounded-lg transition flex items-center gap-2 shadow-sm no-print">
+                        <i class="fa-solid fa-plus"></i> Draft Project Proposal
+                    </button>
+                </div>
+            </div>
+            <div class="bg-govcard border border-govborder rounded-xl card-shadow overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="bg-phnavy text-white uppercase text-[10px] tracking-wider font-semibold">
+                                <th class="py-3 px-4">Project Title</th>
+                                <th class="py-3 px-3">Committee Lead</th>
+                                <th class="py-3 px-3">Pipeline Status</th>
+                                <th class="py-3 px-3">Allocated Budget</th>
+                                <th class="py-3 px-3">Target Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="projectsTableBody" class="divide-y divide-slate-200 font-medium">
+                            <!-- Dynamic Content -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: FINANCIAL & COA DISBURSEMENT LEDGER -->
+        <section id="section-financial" class="space-y-6 hidden">
+            <div class="bg-govcard border border-govborder rounded-xl p-5 card-shadow flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-lg font-bold text-phnavy flex items-center gap-2">
+                        <i class="fa-solid fa-file-invoice-dollar text-phgold"></i> COA Financial Ledger & Disbursement Tracking
+                    </h2>
+                    <p class="text-xs text-slate-500">Commission on Audit (COA) compliant disbursement logs and 10% Sangguniang Kabataan fund utilization records</p>
+                </div>
+                <div class="flex items-center gap-2 w-full md:w-auto">
+                    <button onclick="openModal('modalFinancial')" class="bg-phnavy hover:bg-phblue text-white text-xs font-semibold px-4 py-2 rounded-lg transition flex items-center gap-2 shadow-sm no-print">
+                        <i class="fa-solid fa-plus"></i> Record Disbursement
+                    </button>
+                </div>
+            </div>
+            <div class="bg-govcard border border-govborder rounded-xl card-shadow overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="bg-phnavy text-white uppercase text-[10px] tracking-wider font-semibold">
+                                <th class="py-3 px-4">Voucher / Ref #</th>
+                                <th class="py-3 px-3">Date</th>
+                                <th class="py-3 px-3">Particulars / Payee</th>
+                                <th class="py-3 px-3">ABYIP Reference</th>
+                                <th class="py-3 px-3">Amount (PHP)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="financialTableBody" class="divide-y divide-slate-200 font-medium">
+                            <!-- Dynamic Content -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.nav-tab').forEach(btn => btn.classList.remove('nav-tab-active', 'text-phnavy', 'border-phnavy'));
+            document.querySelectorAll('.nav-tab').forEach(btn => btn.classList.add('text-slate-600', 'border-transparent'));
+            
+            const activeBtn = document.getElementById('tab-' + tabId);
+            activeBtn.classList.add('nav-tab-active', 'text-phnavy');
+            activeBtn.classList.remove('text-slate-600', 'border-transparent');
+
+            ['dashboard', 'registry', 'projects', 'financial'].forEach(id => {
+                document.getElementById('section-' + id).classList.add('hidden');
+            });
+            document.getElementById('section-' + tabId).classList.remove('hidden');
+        }
+
+        // Clock script
+        setInterval(() => {
+            const now = new Date();
+            document.getElementById('liveClock').innerText = now.toLocaleDateString('en-PH', { month: 'short', day: 'numeric', year: 'numeric' }) + ' ' + now.toLocaleTimeString('en-PH');
+        }, 1000);
+    </script>
+</body>
+</html>
